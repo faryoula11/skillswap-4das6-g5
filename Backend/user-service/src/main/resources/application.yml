@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: user-service          # nom d'enregistrement Eureka : USER-SERVICE
+  datasource:
+    # Base H2 privee au service (Database-per-Service)
+    url: jdbc:h2:mem:userdb;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USER:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+
+server:
+  port: 8081
+
+eureka:
+  client:
+    enabled: ${EUREKA_ENABLED:false}   # passer a true quand le serveur Eureka (8761) est lance
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  health:
+    rabbit:
+      enabled: false     # evite un etat DOWN tant que RabbitMQ n'est pas lance
