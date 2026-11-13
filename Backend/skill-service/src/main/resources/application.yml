@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: skill-service
+
+  # Base H2 en mémoire pour démarrer sans installation.
+  # MySQL sera activé avec le profil "mysql" (voir plus bas).
+  datasource:
+    url: jdbc:h2:mem:skilldb
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  h2:
+    console:
+      enabled: true
+
+server:
+  port: 8082
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+---
+spring:
+  config:
+    activate:
+      on-profile: mysql
+  datasource:
+    url: jdbc:mysql://localhost:3306/skill_db?createDatabaseIfNotExist=true
+    username: root
+    password: root
