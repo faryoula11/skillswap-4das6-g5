@@ -7,6 +7,13 @@ Microservice de SkillSwap qui gère le catalogue des compétences et les compét
 - Swagger : http://localhost:8082/swagger-ui.html
 - Santé : http://localhost:8082/actuator/health
 
+## Validation API GET (Séance 4)
+
+L'API de consultation du catalogue a été testée et validée avec succès via Swagger UI :
+- **Endpoint testé** : `GET /api/skills`
+- **Lien direct Swagger UI** : [http://localhost:8082/swagger-ui/index.html#/Skills/getSkills](http://localhost:8082/swagger-ui/index.html#/Skills/getSkills)
+- **Code retour obtenu** : `200 OK`
+
 ## Lancer
 
 ```bash

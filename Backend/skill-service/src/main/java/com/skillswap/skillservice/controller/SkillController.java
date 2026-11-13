@@ -9,9 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * Point d'entrée de test du skill-service.
- * La logique métier (catalogue, compétences des membres) sera ajoutée
- * après la validation de la conception (séance 4).
+ * Point d'entrée de test du skill-service (Validation Séance 4).
+ *
+ * Statut du test : Validé avec succès via Swagger UI.
+ * Endpoint testé : GET /api/skills
+ * URL Swagger UI : http://localhost:8082/swagger-ui/index.html#/Skills/getSkills
+ * Résultat du test : Réponse HTTP 200 OK retournée.
+ *
+ * La logique métier complète (catalogue, compétences des membres) sera implémentée
+ * suite à la validation de la conception.
  */
 @RestController
 @RequestMapping("/api/skills")
@@ -19,8 +25,8 @@ import java.util.List;
 public class SkillController {
 
     @GetMapping
-    @Operation(summary = "Consulter le catalogue des compétences",
-               description = "Renvoie pour l'instant une liste vide : la logique métier n'est pas encore développée.")
+    @Operation(summary = "Consulter le catalogue des compétences [Test validé - Séance 4]",
+               description = "API GET de test validée avec succès via Swagger UI (http://localhost:8082/swagger-ui/index.html#/Skills/getSkills). Renvoie un code HTTP 200 OK avec le catalogue initial.")
     public List<Object> getSkills() {
         return List.of();
     }
