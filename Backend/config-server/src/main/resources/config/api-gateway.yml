@@ -1,4 +1,4 @@
-# Configuration centralisée de l'API Gateway
+# Configuration centralisée de l'API Gateway (Mise à jour suite au refus de user-service et notification-service)
 server:
   port: 8080
 
@@ -10,11 +10,6 @@ spring:
           enabled: true
           lower-case-service-id: true
       routes:
-        - id: user-service-route
-          uri: lb://USER-SERVICE
-          predicates:
-            - Path=/api/users/**
-
         - id: skill-service-route
           uri: lb://SKILL-SERVICE
           predicates:
@@ -34,11 +29,6 @@ spring:
           uri: lb://REVIEW-SERVICE
           predicates:
             - Path=/api/reviews/**
-
-        - id: notification-service-route
-          uri: lb://NOTIFICATION-SERVICE
-          predicates:
-            - Path=/api/notifications/**
 
         - id: recommendation-service-route
           uri: lb://RECOMMENDATION-SERVICE
