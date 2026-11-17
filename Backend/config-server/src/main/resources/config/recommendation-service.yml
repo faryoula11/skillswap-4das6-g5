@@ -1,0 +1,14 @@
+# Configuration centralisée de MS7 - recommendation-service
+server:
+  port: 8087
+
+spring:
+  neo4j:
+    uri: bolt://localhost:7687
+    authentication:
+      username: neo4j
+      password: password
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

@@ -1,0 +1,46 @@
+# Configuration centralisée de l'API Gateway
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: user-service-route
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/users/**
+
+        - id: skill-service-route
+          uri: lb://SKILL-SERVICE
+          predicates:
+            - Path=/api/skills/**, /api/categories/**, /api/user-skills/**
+
+        - id: exchange-service-route
+          uri: lb://EXCHANGE-SERVICE
+          predicates:
+            - Path=/api/exchanges/**
+
+        - id: credit-service-route
+          uri: lb://CREDIT-SERVICE
+          predicates:
+            - Path=/api/credit/**, /wallets/**, /holds/**
+
+        - id: review-service-route
+          uri: lb://REVIEW-SERVICE
+          predicates:
+            - Path=/api/reviews/**
+
+        - id: notification-service-route
+          uri: lb://NOTIFICATION-SERVICE
+          predicates:
+            - Path=/api/notifications/**
+
+        - id: recommendation-service-route
+          uri: lb://RECOMMENDATION-SERVICE
+          predicates:
+            - Path=/api/recommendations/**

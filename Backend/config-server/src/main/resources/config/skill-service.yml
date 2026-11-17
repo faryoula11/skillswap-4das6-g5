@@ -1,0 +1,30 @@
+# Configuration centralisée de MS2 - skill-service
+server:
+  port: 8082
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:skilldb
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  h2:
+    console:
+      enabled: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+---
+# Profil MySQL
+spring:
+  config:
+    activate:
+      on-profile: mysql
+  datasource:
+    url: jdbc:mysql://localhost:3306/skill_db?createDatabaseIfNotExist=true
+    username: root
+    password: root

@@ -1,0 +1,19 @@
+# Configuration centralisée de MS5 - review-service
+server:
+  port: 8085
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:reviewdb
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  h2:
+    console:
+      enabled: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
