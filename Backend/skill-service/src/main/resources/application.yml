@@ -2,18 +2,20 @@ spring:
   application:
     name: skill-service
 
-  # Base H2 en mémoire pour démarrer sans installation.
-  # MySQL sera activé avec le profil "mysql" (voir plus bas).
+  # Base de données officielle MySQL comme spécifié dans le dossier technique (MS2 skill_db)
   datasource:
-    url: jdbc:h2:mem:skilldb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-    username: sa
-    password:
+    url: jdbc:mysql://localhost:3306/skill_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
   jpa:
     hibernate:
       ddl-auto: update
-  h2:
-    console:
-      enabled: true
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
 
 server:
   port: 8082
@@ -34,13 +36,3 @@ management:
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
-
----
-spring:
-  config:
-    activate:
-      on-profile: mysql
-  datasource:
-    url: jdbc:mysql://localhost:3306/skill_db?createDatabaseIfNotExist=true
-    username: root
-    password: root
