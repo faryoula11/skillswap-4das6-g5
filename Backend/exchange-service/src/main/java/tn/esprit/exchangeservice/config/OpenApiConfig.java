@@ -10,6 +10,10 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.servers.Server;
+import org.springframework.context.annotation.Bean;
+
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
@@ -39,5 +43,18 @@ import org.springframework.context.annotation.Configuration;
                 )
         )
 )
+
+
 public class OpenApiConfig {
+
+    @Bean
+    public OpenAPI exchangeOpenAPI() {
+        return new OpenAPI()
+                .addServersItem(new Server()
+                        .url("http://localhost:8090")
+                        .description("API Gateway"))
+                .addServersItem(new Server()
+                        .url("http://localhost:8083")
+                        .description("Exchange Service direct"));
+    }
 }
