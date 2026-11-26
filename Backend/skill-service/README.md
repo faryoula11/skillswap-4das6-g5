@@ -5,8 +5,8 @@ Microservice souverain de SkillSwap responsable de la gestion du catalogue offic
 - **Port** : `8082`
 - **Nom dans Eureka** : `SKILL-SERVICE`
 - **Swagger UI** : `http://localhost:8082/swagger-ui.html`
-- **Santé Actuator** : `http://localhost:8082/actuator/health`
-- **Base de données** : H2 en mémoire (développement) / MySQL `skill_db` (production/profil `mysql`)
+- **Santé & Observabilité Actuator** : `http://localhost:8082/actuator/health`, `/actuator/info`, `/actuator/metrics`
+- **Base de données** : MySQL `skill_db` (`localhost:3306`)
 - **Responsable** : Amal Jemli (`Amal.Jemli@esprit.tn`)
 
 ---
@@ -92,10 +92,10 @@ Résultats : **8/8 tests réussis** couvrant :
 
 ## 🚀 Démarrage
 
-```bash
-# Démarrage avec H2 en mémoire
-mvnw.cmd spring-boot:run
+1. Démarrer MySQL (XAMPP / Wamp / MySQL Service sur le port `3306`). La base `skill_db` est créée automatiquement.
+2. Lancer `eureka-server` (port `8761`) et `config-server` (port `8888`).
+3. Démarrer `skill-service` :
 
-# Démarrage avec profil MySQL
-mvnw.cmd spring-boot:run -Dspring-boot.run.profiles=mysql
+```bash
+mvnw.cmd spring-boot:run
 ```

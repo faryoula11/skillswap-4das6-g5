@@ -1,10 +1,12 @@
-# Configuration réservée aux tests automatisés
+# Configuration des tests automatisés sur MySQL dédié (skill_db_test)
 spring:
+  config:
+    import: ""
   datasource:
-    url: jdbc:h2:mem:skilldb_test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+    url: jdbc:mysql://localhost:3306/skill_db_test?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: ""
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: create-drop
